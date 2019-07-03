@@ -421,6 +421,7 @@ public class gui1 {
 		gbc_lblTop10Dynamic.gridy = 16;
 		frmGradebook.getContentPane().add(lblTop10Dynamic, gbc_lblTop10Dynamic);
 		
+		//to String method
 		String temp = "";
 		for (int i = 0; i < gradeList.size(); i++) {
 			temp += gradeList.get(i) + "\n";
@@ -428,6 +429,8 @@ public class gui1 {
 		}
 		editorPaneT.setText(temp);
 		
+		//upload / update grades button
+		//I think there should just be an upload grades and modify grades button but whatever
 		btnUploadGrades_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -523,7 +526,9 @@ public class gui1 {
 			}
 				
 		});
-	
+		
+		
+		//save grades button
 		btnSaveGradesTo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -615,9 +620,12 @@ public class gui1 {
 			}
 		});
 		
+		//change minimum grade button
 		btnChange_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					//This is incorrect
+					//We just need to set a global minimum and maximum score for computing the report
 					gradeA = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for A:"));
 					gradeB = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for B:"));
 					gradeC = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for C:"));
@@ -666,6 +674,7 @@ public class gui1 {
 				
 		});
 		
+		//set minimum and maximum scores button
 		btnSetMinmax.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -724,6 +733,8 @@ public class gui1 {
 				
 		});
 		
+		
+		//print report button 
 		btnPrintReport_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
