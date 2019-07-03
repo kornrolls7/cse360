@@ -765,7 +765,7 @@ public class gui1 {
 							ex.printStackTrace();
 						}
 					}
-					//changing to 'error' messsage
+					//changing to 'error' 
 					else JOptionPane.showMessageDialog(frmGradebook, "No grades have been imported.", "Error", JOptionPane.WARNING_MESSAGE);
 				}
 			}
