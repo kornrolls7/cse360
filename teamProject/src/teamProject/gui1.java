@@ -50,13 +50,17 @@ public class gui1 {
 	}
 	
 
-	
+	//initialize global gradeList and sortedGradeList ArrayLists
 	ArrayList<String> gradeList = new ArrayList<String>();
 	ArrayList<String> sortedGradeList = new ArrayList<String>();
+	
+	//initialize JButtons
 	private JButton btnUploadGrades_1;
 	private JButton btnPrintReport_1;
 	private JButton btnChange_1;
 	private JButton btnSaveGradesTo_1;
+	
+	//initialize default grade settings
 	private float gradeA = 90, gradeB = 80, gradeC = 70, gradeD = 60, gradeE = 0;
 	private int distA = 0, distB = 0, distC = 0, distD = 0, distE = 0;
 	int min = 0, max = 100;
@@ -70,8 +74,7 @@ public class gui1 {
 	 */
 	private void initialize() {
 		
-		
-		
+
 		frmGradebook = new JFrame();
 		frmGradebook.getContentPane().setForeground(Color.WHITE);
 		frmGradebook.setTitle("GRADEBOOK");
@@ -137,7 +140,7 @@ public class gui1 {
 				gbc_btnPrintReport_1.gridy = 1;
 				frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
 				
-				
+		
 				JLabel lblLetterGrades = new JLabel("LETTER GRADES");
 				lblLetterGrades.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblLetterGrades = new GridBagConstraints();
@@ -171,7 +174,8 @@ public class gui1 {
 				gbc_lblHighDynamic_1.gridx = 3;
 				gbc_lblHighDynamic_1.gridy = 2;
 				frmGradebook.getContentPane().add(lblHighDynamic_1, gbc_lblHighDynamic_1);
-				
+			
+			//initialize text window pane
 				JTextPane textPane = new JTextPane();
 				JScrollPane textPaneT = new JScrollPane(textPane);
 				//JScrollPane textPane = new JScrollPane(textPaneT);
@@ -185,8 +189,7 @@ public class gui1 {
 				gbc_textPaneT.gridy = 2;
 				frmGradebook.getContentPane().add(textPaneT, gbc_textPaneT);
 				
-				
-				
+			//initialize grade editor window pane
 				JEditorPane editorPaneT = new JEditorPane();
 				JScrollPane editorPane = new JScrollPane(editorPaneT);
 				editorPane.setBackground(new Color(255, 255, 255));
@@ -198,7 +201,7 @@ public class gui1 {
 				gbc_editorPane.gridy = 2;
 				frmGradebook.getContentPane().add(editorPane, gbc_editorPane);
 				
-				
+			//initialize statistic's JLabels 	
 				JLabel lblLow = new JLabel("LOW");
 				lblLow.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblLow = new GridBagConstraints();
@@ -264,7 +267,7 @@ public class gui1 {
 				
 				
 						
-				
+				//intialize grade JLabels (A -> E)
 				JLabel lblA = new JLabel("A");
 				lblA.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblA = new GridBagConstraints();
@@ -429,8 +432,7 @@ public class gui1 {
 		}
 		editorPaneT.setText(temp);
 		
-		//upload / update grades button
-		//I think there should just be an upload grades and modify grades button but whatever
+		//upload/update grades action listener
 		btnUploadGrades_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -624,8 +626,6 @@ public class gui1 {
 		btnChange_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//This is incorrect
-					//We just need to set a global minimum and maximum score for computing the report
 					gradeA = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for A:"));
 					gradeB = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for B:"));
 					gradeC = Float.parseFloat(JOptionPane.showInputDialog("Enter minimum grade for C:"));
@@ -768,7 +768,6 @@ public class gui1 {
 									"\n\n20th Percentile: " + lblBottom20Dynamic.getText() +
 									"\n70th Percentile: " + lblMiddle70Dynamic.getText() + 
 									"\n90th Percentile: " + lblTop10Dynamic.getText();
-							
 							bw.write(out);
 							bw.close();
 							
@@ -781,8 +780,6 @@ public class gui1 {
 				}
 			}
 		});
-		
-		
 		
 		frmGradebook.setBounds(100, 100, 784, 464);
 		frmGradebook.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
