@@ -1,5 +1,4 @@
 package teamProject;
-
 import java.awt.EventQueue;
 
 import java.util.*;
@@ -19,9 +18,9 @@ import java.awt.Font;
 import javax.swing.*;
 
 public class gui1 {
-
-	private JFrame frmGradebook;
-	private String filePath = null;
+	
+	private JFrame frmGradebook; //initialize grading application 
+	private String filePath = null; 
 
 	/**
 	 * Launch the application.
@@ -30,7 +29,6 @@ public class gui1 {
 				
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
 				try {
 					gui1 window = new gui1();
 					//changeGradeRange window2 = new changeGradeRange();
@@ -49,12 +47,11 @@ public class gui1 {
 		initialize();
 	}
 	
-
-	//initialize global gradeList and sortedGradeList ArrayLists
+	//initialize global gradeList and sortedGradeList to store grades
 	ArrayList<String> gradeList = new ArrayList<String>();
 	ArrayList<String> sortedGradeList = new ArrayList<String>();
 	
-	//initialize JButtons
+	//initialize buttons
 	private JButton btnUploadGrades_1;
 	private JButton btnPrintReport_1;
 	private JButton btnChange_1;
@@ -66,18 +63,14 @@ public class gui1 {
 	int min = 0, max = 100;
 	double high, low, avg, med;
 	
-	
-
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-
+		//initialize 'grading application' window
 		frmGradebook = new JFrame();
 		frmGradebook.getContentPane().setForeground(Color.WHITE);
-		frmGradebook.setTitle("GRADEBOOK");
+		frmGradebook.setTitle("GRADEBOOK"); //title of application
 		frmGradebook.setBackground(new Color(0, 51, 102));
 		frmGradebook.getContentPane().setBackground(new Color(30, 144, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -86,260 +79,281 @@ public class gui1 {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmGradebook.getContentPane().setLayout(gridBagLayout);
-				
-				JLabel lblAverageDynamic = new JLabel("");
-				lblAverageDynamic.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblAverageDynamic = new GridBagConstraints();
-				gbc_lblAverageDynamic.insets = new Insets(0, 0, 5, 5);
-				gbc_lblAverageDynamic.gridx = 0;
-				gbc_lblAverageDynamic.gridy = 0;
-				frmGradebook.getContentPane().add(lblAverageDynamic, gbc_lblAverageDynamic);
-				
-				JLabel lblLowDynamic = new JLabel("");
-				lblLowDynamic.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblLowDynamic = new GridBagConstraints();
-				gbc_lblLowDynamic.insets = new Insets(0, 0, 5, 5);
-				gbc_lblLowDynamic.gridx = 0;
-				gbc_lblLowDynamic.gridy = 0;
-				frmGradebook.getContentPane().add(lblLowDynamic, gbc_lblLowDynamic);
-				
-				JLabel lblHighDynamic = new JLabel("");
-				lblHighDynamic.setBackground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblHighDynamic = new GridBagConstraints();
-				gbc_lblHighDynamic.insets = new Insets(0, 0, 5, 5);
-				gbc_lblHighDynamic.gridx = 0;
-				gbc_lblHighDynamic.gridy = 0;
-				frmGradebook.getContentPane().add(lblHighDynamic, gbc_lblHighDynamic);
-				
-				JLabel lblMedianDynamic = new JLabel("");
-				lblMedianDynamic.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblMedianDynamic = new GridBagConstraints();
-				gbc_lblMedianDynamic.insets = new Insets(0, 0, 5, 5);
-				gbc_lblMedianDynamic.gridx = 0;
-				gbc_lblMedianDynamic.gridy = 0;
-				frmGradebook.getContentPane().add(lblMedianDynamic, gbc_lblMedianDynamic);
-				
-				JButton btnUploadGrades_1 = new JButton("UPLOAD GRADES");
-				GridBagConstraints gbc_btnUploadGrades_1 = new GridBagConstraints();
-				gbc_btnUploadGrades_1.insets = new Insets(0, 0, 5, 5);
-				gbc_btnUploadGrades_1.gridwidth = 2;
-				gbc_btnUploadGrades_1.gridx = 0;
-				gbc_btnUploadGrades_1.gridy = 1;
-				frmGradebook.getContentPane().add(btnUploadGrades_1, gbc_btnUploadGrades_1);
-				
-				
-				
-				JButton btnChange_1 = new JButton("CHANGE GRADE RANGE");
-				btnChange_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-				
-						
-				JButton btnPrintReport_1 = new JButton("PRINT REPORT");
-				GridBagConstraints gbc_btnPrintReport_1 = new GridBagConstraints();
-				gbc_btnPrintReport_1.insets = new Insets(0, 0, 5, 5);
-				gbc_btnPrintReport_1.gridx = 4;
-				gbc_btnPrintReport_1.gridy = 1;
-				frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
-				
 		
-				JLabel lblLetterGrades = new JLabel("LETTER GRADES");
-				lblLetterGrades.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblLetterGrades = new GridBagConstraints();
-				gbc_lblLetterGrades.anchor = GridBagConstraints.SOUTH;
-				gbc_lblLetterGrades.insets = new Insets(0, 0, 5, 5);
-				gbc_lblLetterGrades.gridx = 5;
-				gbc_lblLetterGrades.gridy = 1;
-				frmGradebook.getContentPane().add(lblLetterGrades, gbc_lblLetterGrades);
-				
-				JLabel lblGrades = new JLabel("GRADES");
-				lblGrades.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblGrades = new GridBagConstraints();
-				gbc_lblGrades.anchor = GridBagConstraints.SOUTH;
-				gbc_lblGrades.insets = new Insets(0, 0, 5, 5);
-				gbc_lblGrades.gridx = 7;
-				gbc_lblGrades.gridy = 1;
-				frmGradebook.getContentPane().add(lblGrades, gbc_lblGrades);
-				
-				JLabel lblHigh = new JLabel("HIGH");
-				lblHigh.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblHigh = new GridBagConstraints();
-				gbc_lblHigh.insets = new Insets(0, 0, 5, 5);
-				gbc_lblHigh.gridx = 1;
-				gbc_lblHigh.gridy = 2;
-				frmGradebook.getContentPane().add(lblHigh, gbc_lblHigh);
-				
-				JLabel lblHighDynamic_1 = new JLabel("0");
-				lblHighDynamic_1.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblHighDynamic_1 = new GridBagConstraints();
-				gbc_lblHighDynamic_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblHighDynamic_1.gridx = 3;
-				gbc_lblHighDynamic_1.gridy = 2;
-				frmGradebook.getContentPane().add(lblHighDynamic_1, gbc_lblHighDynamic_1);
-			
-			//initialize text window pane
-				JTextPane textPane = new JTextPane();
-				JScrollPane textPaneT = new JScrollPane(textPane);
-				//JScrollPane textPane = new JScrollPane(textPaneT);
-				textPaneT.setBackground(new Color(30, 144, 255));
-				textPane.setBackground(new Color(30, 144, 255));
-				GridBagConstraints gbc_textPaneT = new GridBagConstraints();
-				gbc_textPaneT.fill = GridBagConstraints.BOTH;
-				gbc_textPaneT.insets = new Insets(0, 0, 5, 5);
-				gbc_textPaneT.gridheight = 11;
-				gbc_textPaneT.gridx = 5;
-				gbc_textPaneT.gridy = 2;
-				frmGradebook.getContentPane().add(textPaneT, gbc_textPaneT);
-				
-			//initialize grade editor window pane
-				JEditorPane editorPaneT = new JEditorPane();
-				JScrollPane editorPane = new JScrollPane(editorPaneT);
-				editorPane.setBackground(new Color(255, 255, 255));
-				GridBagConstraints gbc_editorPane = new GridBagConstraints();
-				gbc_editorPane.fill = GridBagConstraints.BOTH;
-				gbc_editorPane.insets = new Insets(0, 0, 5, 5);
-				gbc_editorPane.gridheight = 11;
-				gbc_editorPane.gridx = 7;
-				gbc_editorPane.gridy = 2;
-				frmGradebook.getContentPane().add(editorPane, gbc_editorPane);
-				
-			//initialize statistic's JLabels 	
-				JLabel lblLow = new JLabel("LOW");
-				lblLow.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblLow = new GridBagConstraints();
-				gbc_lblLow.anchor = GridBagConstraints.NORTH;
-				gbc_lblLow.insets = new Insets(0, 0, 5, 5);
-				gbc_lblLow.gridx = 1;
-				gbc_lblLow.gridy = 3;
-				frmGradebook.getContentPane().add(lblLow, gbc_lblLow);
-				
-				JLabel lblLowDynamic_1 = new JLabel("0");
-				lblLowDynamic_1.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblLowDynamic_1 = new GridBagConstraints();
-				gbc_lblLowDynamic_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblLowDynamic_1.gridx = 3;
-				gbc_lblLowDynamic_1.gridy = 3;
-				frmGradebook.getContentPane().add(lblLowDynamic_1, gbc_lblLowDynamic_1);
-				
-				JLabel lblAverage = new JLabel("AVERAGE");
-				lblAverage.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblAverage = new GridBagConstraints();
-				gbc_lblAverage.insets = new Insets(0, 0, 5, 5);
-				gbc_lblAverage.gridx = 1;
-				gbc_lblAverage.gridy = 4;
-				frmGradebook.getContentPane().add(lblAverage, gbc_lblAverage);
-				
-				JLabel lblAverageDynamic_1 = new JLabel("0");
-				lblAverageDynamic_1.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblAverageDynamic_1 = new GridBagConstraints();
-				gbc_lblAverageDynamic_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblAverageDynamic_1.gridx = 3;
-				gbc_lblAverageDynamic_1.gridy = 4;
-				frmGradebook.getContentPane().add(lblAverageDynamic_1, gbc_lblAverageDynamic_1);
-				
-				JLabel lblMedian = new JLabel("MEDIAN");
-				lblMedian.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblMedian = new GridBagConstraints();
-				gbc_lblMedian.insets = new Insets(0, 0, 5, 5);
-				gbc_lblMedian.gridx = 1;
-				gbc_lblMedian.gridy = 5;
-				frmGradebook.getContentPane().add(lblMedian, gbc_lblMedian);
-				
-				JLabel lblMedianDynamic_1 = new JLabel("0");
-				lblMedianDynamic_1.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblMedianDynamic_1 = new GridBagConstraints();
-				gbc_lblMedianDynamic_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblMedianDynamic_1.gridx = 3;
-				gbc_lblMedianDynamic_1.gridy = 5;
-				frmGradebook.getContentPane().add(lblMedianDynamic_1, gbc_lblMedianDynamic_1);
-				
-				JLabel lblDistribution = new JLabel("DISTRIBUTION");
-				lblDistribution.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblDistribution = new GridBagConstraints();
-				gbc_lblDistribution.insets = new Insets(0, 0, 5, 5);
-				gbc_lblDistribution.gridx = 1;
-				gbc_lblDistribution.gridy = 7;
-				frmGradebook.getContentPane().add(lblDistribution, gbc_lblDistribution);
-				GridBagConstraints gbc_btnChange_1 = new GridBagConstraints();
-				gbc_btnChange_1.fill = GridBagConstraints.HORIZONTAL;
-				gbc_btnChange_1.insets = new Insets(0, 0, 5, 5);
-				gbc_btnChange_1.gridx = 4;
-				gbc_btnChange_1.gridy = 7;
-				frmGradebook.getContentPane().add(btnChange_1, gbc_btnChange_1);
-				
-				
-						
-				//intialize grade JLabels (A -> E)
-				JLabel lblA = new JLabel("A");
-				lblA.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblA = new GridBagConstraints();
-				gbc_lblA.insets = new Insets(0, 0, 5, 5);
-				gbc_lblA.gridx = 1;
-				gbc_lblA.gridy = 8;
-				frmGradebook.getContentPane().add(lblA, gbc_lblA);
-				
-				JLabel label = new JLabel("0");
-				label.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblTest = new GridBagConstraints();
-				gbc_lblTest.insets = new Insets(0, 0, 5, 5);
-				gbc_lblTest.gridx = 2;
-				gbc_lblTest.gridy = 8;
-				frmGradebook.getContentPane().add(label, gbc_lblTest);
-				
-				JLabel lblB = new JLabel("B");
-				lblB.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblB = new GridBagConstraints();
-				gbc_lblB.insets = new Insets(0, 0, 5, 5);
-				gbc_lblB.gridx = 1;
-				gbc_lblB.gridy = 9;
-				frmGradebook.getContentPane().add(lblB, gbc_lblB);
-				
-				JLabel label_1 = new JLabel("0");
-				label_1.setForeground(Color.WHITE);
-				GridBagConstraints gbc_lblTest_1 = new GridBagConstraints();
-				gbc_lblTest_1.insets = new Insets(0, 0, 5, 5);
-				gbc_lblTest_1.gridx = 2;
-				gbc_lblTest_1.gridy = 9;
-				frmGradebook.getContentPane().add(label_1, gbc_lblTest_1);
-				
-				JLabel lblC = new JLabel("C");
-				lblC.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblC = new GridBagConstraints();
-				gbc_lblC.insets = new Insets(0, 0, 5, 5);
-				gbc_lblC.gridx = 1;
-				gbc_lblC.gridy = 10;
-				frmGradebook.getContentPane().add(lblC, gbc_lblC);
-				
-				JLabel label_2 = new JLabel("0");
-				label_2.setForeground(Color.WHITE);
-				GridBagConstraints gbc_label = new GridBagConstraints();
-				gbc_label.insets = new Insets(0, 0, 5, 5);
-				gbc_label.gridx = 2;
-				gbc_label.gridy = 10;
-				frmGradebook.getContentPane().add(label_2, gbc_label);
-				
-						JLabel lblD = new JLabel("D");
-						lblD.setForeground(new Color(255, 255, 255));
-						GridBagConstraints gbc_lblD = new GridBagConstraints();
-						gbc_lblD.insets = new Insets(0, 0, 5, 5);
-						gbc_lblD.gridx = 1;
-						gbc_lblD.gridy = 11;
-						frmGradebook.getContentPane().add(lblD, gbc_lblD);
-				
-				JLabel label_3 = new JLabel("0");
-				label_3.setForeground(Color.WHITE);
-				GridBagConstraints gbc_label_1 = new GridBagConstraints();
-				gbc_label_1.insets = new Insets(0, 0, 5, 5);
-				gbc_label_1.gridx = 2;
-				gbc_label_1.gridy = 11;
-				frmGradebook.getContentPane().add(label_3, gbc_label_1);
+		//initialize average grade result label 
+		JLabel lblAverageDynamic = new JLabel("");
+		lblAverageDynamic.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblAverageDynamic = new GridBagConstraints();
+		gbc_lblAverageDynamic.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAverageDynamic.gridx = 0;
+		gbc_lblAverageDynamic.gridy = 0;
+		frmGradebook.getContentPane().add(lblAverageDynamic, gbc_lblAverageDynamic);
 		
-				JLabel lblE = new JLabel("E");
-				lblE.setForeground(new Color(255, 255, 255));
-				GridBagConstraints gbc_lblE = new GridBagConstraints();
-				gbc_lblE.insets = new Insets(0, 0, 5, 5);
-				gbc_lblE.gridx = 1;
-				gbc_lblE.gridy = 12;
-				frmGradebook.getContentPane().add(lblE, gbc_lblE);
+		//initialize low score result label 
+		JLabel lblLowDynamic = new JLabel("");
+		lblLowDynamic.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblLowDynamic = new GridBagConstraints();
+		gbc_lblLowDynamic.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLowDynamic.gridx = 0;
+		gbc_lblLowDynamic.gridy = 0;
+		frmGradebook.getContentPane().add(lblLowDynamic, gbc_lblLowDynamic);
 		
+		//initialize high score result label 
+		JLabel lblHighDynamic = new JLabel("");
+		lblHighDynamic.setBackground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblHighDynamic = new GridBagConstraints();
+		gbc_lblHighDynamic.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHighDynamic.gridx = 0;
+		gbc_lblHighDynamic.gridy = 0;
+		frmGradebook.getContentPane().add(lblHighDynamic, gbc_lblHighDynamic);
+		
+		//initialize median grade result label
+		JLabel lblMedianDynamic = new JLabel("");
+		lblMedianDynamic.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblMedianDynamic = new GridBagConstraints();
+		gbc_lblMedianDynamic.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMedianDynamic.gridx = 0;
+		gbc_lblMedianDynamic.gridy = 0;
+		frmGradebook.getContentPane().add(lblMedianDynamic, gbc_lblMedianDynamic);
+		
+		//initialize upload grades button 
+		JButton btnUploadGrades_1 = new JButton("UPLOAD GRADES");
+		GridBagConstraints gbc_btnUploadGrades_1 = new GridBagConstraints();
+		gbc_btnUploadGrades_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnUploadGrades_1.gridwidth = 2;
+		gbc_btnUploadGrades_1.gridx = 0;
+		gbc_btnUploadGrades_1.gridy = 1;
+		frmGradebook.getContentPane().add(btnUploadGrades_1, gbc_btnUploadGrades_1);
+		
+		
+		//initialize change grade range button
+		JButton btnChange_1 = new JButton("CHANGE GRADE RANGE");
+		btnChange_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		//initialize print report button
+		JButton btnPrintReport_1 = new JButton("PRINT REPORT");
+		GridBagConstraints gbc_btnPrintReport_1 = new GridBagConstraints();
+		gbc_btnPrintReport_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPrintReport_1.gridx = 4;
+		gbc_btnPrintReport_1.gridy = 1;
+		frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
+		
+		//initialize 'letter grades' label
+		JLabel lblLetterGrades = new JLabel("LETTER GRADES");
+		lblLetterGrades.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblLetterGrades = new GridBagConstraints();
+		gbc_lblLetterGrades.anchor = GridBagConstraints.SOUTH;
+		gbc_lblLetterGrades.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLetterGrades.gridx = 5;
+		gbc_lblLetterGrades.gridy = 1;
+		frmGradebook.getContentPane().add(lblLetterGrades, gbc_lblLetterGrades);
+		
+		//initialize 'grades' label
+		JLabel lblGrades = new JLabel("GRADES");
+		lblGrades.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblGrades = new GridBagConstraints();
+		gbc_lblGrades.anchor = GridBagConstraints.SOUTH;
+		gbc_lblGrades.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGrades.gridx = 7;
+		gbc_lblGrades.gridy = 1;
+		frmGradebook.getContentPane().add(lblGrades, gbc_lblGrades);
+		
+		//initialize 'high' label
+		JLabel lblHigh = new JLabel("HIGH");
+		lblHigh.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblHigh = new GridBagConstraints();
+		gbc_lblHigh.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHigh.gridx = 1;
+		gbc_lblHigh.gridy = 2;
+		frmGradebook.getContentPane().add(lblHigh, gbc_lblHigh);
+		
+		//initialize 'high' result label to 0
+			//haven't we already done this above? 
+		JLabel lblHighDynamic_1 = new JLabel("0");
+		lblHighDynamic_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblHighDynamic_1 = new GridBagConstraints();
+		gbc_lblHighDynamic_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHighDynamic_1.gridx = 3;
+		gbc_lblHighDynamic_1.gridy = 2;
+		frmGradebook.getContentPane().add(lblHighDynamic_1, gbc_lblHighDynamic_1);
+	
+		//initialize 'letter grades' display text window
+		JTextPane textPane = new JTextPane(); 
+		JScrollPane textPaneT = new JScrollPane(textPane);
+		textPaneT.setBackground(new Color(30, 144, 255));
+		textPane.setBackground(new Color(30, 144, 255));
+		GridBagConstraints gbc_textPaneT = new GridBagConstraints();
+		gbc_textPaneT.fill = GridBagConstraints.BOTH;
+		gbc_textPaneT.insets = new Insets(0, 0, 5, 5);
+		gbc_textPaneT.gridheight = 11;
+		gbc_textPaneT.gridx = 5;
+		gbc_textPaneT.gridy = 2;
+		frmGradebook.getContentPane().add(textPaneT, gbc_textPaneT);
+		
+		//initialize 'grades' text editor window
+		JEditorPane editorPaneT = new JEditorPane();
+		JScrollPane editorPane = new JScrollPane(editorPaneT);
+		editorPane.setBackground(new Color(255, 255, 255));
+		GridBagConstraints gbc_editorPane = new GridBagConstraints();
+		gbc_editorPane.fill = GridBagConstraints.BOTH;
+		gbc_editorPane.insets = new Insets(0, 0, 5, 5);
+		gbc_editorPane.gridheight = 11;
+		gbc_editorPane.gridx = 7;
+		gbc_editorPane.gridy = 2;
+		frmGradebook.getContentPane().add(editorPane, gbc_editorPane);
+		
+		//initialize 'low' label
+		JLabel lblLow = new JLabel("LOW");
+		lblLow.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblLow = new GridBagConstraints();
+		gbc_lblLow.anchor = GridBagConstraints.NORTH;
+		gbc_lblLow.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLow.gridx = 1;
+		gbc_lblLow.gridy = 3;
+		frmGradebook.getContentPane().add(lblLow, gbc_lblLow);
+		
+		//initialize 'low' display result to 0
+		JLabel lblLowDynamic_1 = new JLabel("0");
+		lblLowDynamic_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblLowDynamic_1 = new GridBagConstraints();
+		gbc_lblLowDynamic_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLowDynamic_1.gridx = 3;
+		gbc_lblLowDynamic_1.gridy = 3;
+		frmGradebook.getContentPane().add(lblLowDynamic_1, gbc_lblLowDynamic_1);
+		
+		//initialize average label
+		JLabel lblAverage = new JLabel("AVERAGE");
+		lblAverage.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblAverage = new GridBagConstraints();
+		gbc_lblAverage.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAverage.gridx = 1;
+		gbc_lblAverage.gridy = 4;
+		frmGradebook.getContentPane().add(lblAverage, gbc_lblAverage);
+		
+		//initialize 'average' display result to 0
+		JLabel lblAverageDynamic_1 = new JLabel("0");
+		lblAverageDynamic_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblAverageDynamic_1 = new GridBagConstraints();
+		gbc_lblAverageDynamic_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAverageDynamic_1.gridx = 3;
+		gbc_lblAverageDynamic_1.gridy = 4;
+		frmGradebook.getContentPane().add(lblAverageDynamic_1, gbc_lblAverageDynamic_1);
+		
+		//initialize median label
+		JLabel lblMedian = new JLabel("MEDIAN");
+		lblMedian.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblMedian = new GridBagConstraints();
+		gbc_lblMedian.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMedian.gridx = 1;
+		gbc_lblMedian.gridy = 5;
+		frmGradebook.getContentPane().add(lblMedian, gbc_lblMedian);
+		
+		//initialize 'median' display result to 0
+		JLabel lblMedianDynamic_1 = new JLabel("0");
+		lblMedianDynamic_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblMedianDynamic_1 = new GridBagConstraints();
+		gbc_lblMedianDynamic_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMedianDynamic_1.gridx = 3;
+		gbc_lblMedianDynamic_1.gridy = 5;
+		frmGradebook.getContentPane().add(lblMedianDynamic_1, gbc_lblMedianDynamic_1);
+		
+		//initialize grade distribution label
+		JLabel lblDistribution = new JLabel("DISTRIBUTION");
+		lblDistribution.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblDistribution = new GridBagConstraints();
+		gbc_lblDistribution.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDistribution.gridx = 1;
+		gbc_lblDistribution.gridy = 7;
+		frmGradebook.getContentPane().add(lblDistribution, gbc_lblDistribution);
+		GridBagConstraints gbc_btnChange_1 = new GridBagConstraints();
+		gbc_btnChange_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnChange_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnChange_1.gridx = 4;
+		gbc_btnChange_1.gridy = 7;
+		frmGradebook.getContentPane().add(btnChange_1, gbc_btnChange_1);
+		
+		//initialize 'A' grade label
+		JLabel lblA = new JLabel("A");
+		lblA.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblA = new GridBagConstraints();
+		gbc_lblA.insets = new Insets(0, 0, 5, 5);
+		gbc_lblA.gridx = 1;
+		gbc_lblA.gridy = 8;
+		frmGradebook.getContentPane().add(lblA, gbc_lblA);
+		
+		//initialize 'number of A's' result display label to 0
+		JLabel label = new JLabel("0");
+		label.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblTest = new GridBagConstraints();
+		gbc_lblTest.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTest.gridx = 2;
+		gbc_lblTest.gridy = 8;
+		frmGradebook.getContentPane().add(label, gbc_lblTest);
+		
+		//initialize 'B' grade label
+		JLabel lblB = new JLabel("B");
+		lblB.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblB = new GridBagConstraints();
+		gbc_lblB.insets = new Insets(0, 0, 5, 5);
+		gbc_lblB.gridx = 1;
+		gbc_lblB.gridy = 9;
+		frmGradebook.getContentPane().add(lblB, gbc_lblB);
+		
+		//initialize 'number of B's' result display label to 0
+		JLabel label_1 = new JLabel("0");
+		label_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblTest_1 = new GridBagConstraints();
+		gbc_lblTest_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTest_1.gridx = 2;
+		gbc_lblTest_1.gridy = 9;
+		frmGradebook.getContentPane().add(label_1, gbc_lblTest_1);
+		
+		//initialize 'C' grade label
+		JLabel lblC = new JLabel("C");
+		lblC.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblC = new GridBagConstraints();
+		gbc_lblC.insets = new Insets(0, 0, 5, 5);
+		gbc_lblC.gridx = 1;
+		gbc_lblC.gridy = 10;
+		frmGradebook.getContentPane().add(lblC, gbc_lblC);
+		
+		//initialize 'number of C's' result display label to 0
+		JLabel label_2 = new JLabel("0");
+		label_2.setForeground(Color.WHITE);
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 2;
+		gbc_label.gridy = 10;
+		frmGradebook.getContentPane().add(label_2, gbc_label);
+		
+		//initialize 'D' grade label
+		JLabel lblD = new JLabel("D");
+		lblD.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblD = new GridBagConstraints();
+		gbc_lblD.insets = new Insets(0, 0, 5, 5);
+		gbc_lblD.gridx = 1;
+		gbc_lblD.gridy = 11;
+		frmGradebook.getContentPane().add(lblD, gbc_lblD);
+		
+		//initialize 'number of D's' result display label to 0
+		JLabel label_3 = new JLabel("0");
+		label_3.setForeground(Color.WHITE);
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.insets = new Insets(0, 0, 5, 5);
+		gbc_label_1.gridx = 2;
+		gbc_label_1.gridy = 11;
+		frmGradebook.getContentPane().add(label_3, gbc_label_1);
+		
+		//initialize 'E' grade label
+		JLabel lblE = new JLabel("E");
+		lblE.setForeground(new Color(255, 255, 255));
+		GridBagConstraints gbc_lblE = new GridBagConstraints();
+		gbc_lblE.insets = new Insets(0, 0, 5, 5);
+		gbc_lblE.gridx = 1;
+		gbc_lblE.gridy = 12;
+		frmGradebook.getContentPane().add(lblE, gbc_lblE);
+
+		//initialize 'number of E's' result display label
 		JLabel label_4 = new JLabel("0");
 		label_4.setForeground(Color.WHITE);
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
@@ -348,6 +362,7 @@ public class gui1 {
 		gbc_label_2.gridy = 12;
 		frmGradebook.getContentPane().add(label_4, gbc_label_2);
 		
+		//initialize 'percentile' label
 		JLabel lblPercentile = new JLabel("PERCENTILE");
 		lblPercentile.setForeground(new Color(255, 255, 255));
 		GridBagConstraints gbc_lblPercentile = new GridBagConstraints();
@@ -355,7 +370,8 @@ public class gui1 {
 		gbc_lblPercentile.gridx = 1;
 		gbc_lblPercentile.gridy = 14;
 		frmGradebook.getContentPane().add(lblPercentile, gbc_lblPercentile);
-		
+
+		//initialize 'set minimum and maximum' button
 		JButton btnSetMinmax = new JButton("SET MIN/MAX");
 		btnSetMinmax.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		GridBagConstraints gbc_btnSetMinmax = new GridBagConstraints();
@@ -363,7 +379,8 @@ public class gui1 {
 		gbc_btnSetMinmax.gridx = 5;
 		gbc_btnSetMinmax.gridy = 14;
 		frmGradebook.getContentPane().add(btnSetMinmax, gbc_btnSetMinmax);
-		
+
+		//initialize 'update grades' button
 		JButton btnSaveGradesTo_1 = new JButton("UPDATE GRADES");
 		btnSaveGradesTo_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		GridBagConstraints gbc_btnSaveGradesTo_1 = new GridBagConstraints();
@@ -371,8 +388,8 @@ public class gui1 {
 		gbc_btnSaveGradesTo_1.gridx = 7;
 		gbc_btnSaveGradesTo_1.gridy = 14;
 		frmGradebook.getContentPane().add(btnSaveGradesTo_1, gbc_btnSaveGradesTo_1);
-		
-		
+
+		//initialize '20th percentile' label
 		JLabel lblBottom = new JLabel("20th Percentile");
 		lblBottom.setForeground(new Color(255, 255, 255));
 		GridBagConstraints gbc_lblBottom = new GridBagConstraints();
@@ -381,6 +398,7 @@ public class gui1 {
 		gbc_lblBottom.gridy = 15;
 		frmGradebook.getContentPane().add(lblBottom, gbc_lblBottom);
 		
+		//initialize '70th percentile' label
 		JLabel lblMiddle = new JLabel("70th Percentile");
 		lblMiddle.setForeground(new Color(255, 255, 255));
 		GridBagConstraints gbc_lblMiddle = new GridBagConstraints();
@@ -388,7 +406,8 @@ public class gui1 {
 		gbc_lblMiddle.gridx = 4;
 		gbc_lblMiddle.gridy = 15;
 		frmGradebook.getContentPane().add(lblMiddle, gbc_lblMiddle);
-		
+
+		//initialize '90th percentile' label
 		JLabel lblTop = new JLabel("90th Percentile");
 		lblTop.setForeground(new Color(255, 255, 255));
 		GridBagConstraints gbc_lblTop = new GridBagConstraints();
@@ -396,7 +415,8 @@ public class gui1 {
 		gbc_lblTop.gridx = 5;
 		gbc_lblTop.gridy = 15;
 		frmGradebook.getContentPane().add(lblTop, gbc_lblTop);
-		
+
+		//initialize 20th percentile result display label
 		JLabel lblBottom20Dynamic = new JLabel(" ");
 		lblBottom20Dynamic.setBackground(Color.WHITE);
 		lblBottom20Dynamic.setForeground(new Color(255, 255, 255));
@@ -405,7 +425,8 @@ public class gui1 {
 		gbc_lblBottom20Dynamic.gridx = 1;
 		gbc_lblBottom20Dynamic.gridy = 16;
 		frmGradebook.getContentPane().add(lblBottom20Dynamic, gbc_lblBottom20Dynamic);
-		
+
+		//initialize 70th percentile result display label
 		JLabel lblMiddle70Dynamic = new JLabel(" ");
 		lblMiddle70Dynamic.setBackground(Color.WHITE);
 		lblMiddle70Dynamic.setForeground(new Color(255, 255, 255));
@@ -415,6 +436,7 @@ public class gui1 {
 		gbc_lblMiddle70Dynamic.gridy = 16;
 		frmGradebook.getContentPane().add(lblMiddle70Dynamic, gbc_lblMiddle70Dynamic);
 		
+		//initialize 90th percentile result display label
 		JLabel lblTop10Dynamic = new JLabel(" ");
 		lblTop10Dynamic.setBackground(Color.WHITE);
 		lblTop10Dynamic.setForeground(new Color(255, 255, 255));
@@ -424,57 +446,83 @@ public class gui1 {
 		gbc_lblTop10Dynamic.gridy = 16;
 		frmGradebook.getContentPane().add(lblTop10Dynamic, gbc_lblTop10Dynamic);
 		
-		//to String method
+		//add and display grades under 'grades' window pane
 		String temp = "";
 		for (int i = 0; i < gradeList.size(); i++) {
 			temp += gradeList.get(i) + "\n";
 			
 		}
-		editorPaneT.setText(temp);
+		editorPaneT.setText(temp); //add text to window
 		
-		//upload/update grades action listener
+		// upload/update grades action 
 		btnUploadGrades_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//initialize file chooser 
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 				int returnValue = jfc.showOpenDialog(null);
 				
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					
+					//have to user select a file
 					File selectedFile = jfc.getSelectedFile();
 					filePath = selectedFile.getAbsolutePath();
-					if(selectedFile.getName().toLowerCase().endsWith("txt")) {	
+					
+					//if the user selects a .txt file (only supported file type)
+					if(selectedFile.getName().toLowerCase().endsWith("txt")) {
+						
+						//try to analyze grades
 						try {
 							gradeList.clear();
 							FileReader fr = new FileReader(selectedFile);
 							BufferedReader br = new BufferedReader(fr);
 							String in;
+							
+							//read text file
 							while ((in = br.readLine()) != null) {
 								gradeList.add(in);
 								sortedGradeList.add(in);
 							}
 							br.close();
+							
+							//sort grade list
 							Collections.sort(sortedGradeList, Collections.reverseOrder());
+							
+							//re-display grades in 'grades' window
 							String temp = "";
 							for (int i = 0; i < gradeList.size(); i++) {
 								temp += gradeList.get(i) + "\n";
 								
 							}
 							editorPaneT.setText(temp);
-	
+							
+							//set 'high' display result to first element in sorted array list
 							lblHighDynamic_1.setText(sortedGradeList.get(0));
+							
+							//set 'low' display result to last element in sorted array list
 							lblLowDynamic_1.setText(sortedGradeList.get(sortedGradeList.size()-1));
+							
+							//calculate average 
 							double avgTemp = 0;
 							for(int i = 0; i < sortedGradeList.size(); i++) {
 								avgTemp += Double.parseDouble(sortedGradeList.get(i));
 							}
 							avgTemp = avgTemp / sortedGradeList.size();
 							DecimalFormat f = new DecimalFormat("##.00");
+							//set 'average' display result label to current average
 							lblAverageDynamic_1.setText(f.format(avgTemp));
+							
+							//set 'median' display result to element in middle of sorted array list
 							lblMedianDynamic_1.setText(sortedGradeList.get((int)Math.ceil(sortedGradeList.size()/2)-1));
 							
+							//calculate and display 20th percentile 
 							lblBottom20Dynamic.setText(sortedGradeList.get((int)Math.ceil(0.8 * sortedGradeList.size())-1));  //percentiles are reversed because of a reverse sort
+							//calculate and display 70th percentile
 							lblMiddle70Dynamic.setText(sortedGradeList.get((int)Math.ceil(0.3 * sortedGradeList.size())-1));
+							//calculate and display 90th percentile 
 							lblTop10Dynamic.setText(sortedGradeList.get((int)Math.ceil(0.1 * sortedGradeList.size())-1));
 							
+							//calculate grade distributions
 							String temp1 = "";
 							distA = 0;
 							distB = 0;
@@ -504,6 +552,7 @@ public class gui1 {
 									distE++;
 								}
 							}
+							//display grade distributions
 							textPane.setText(temp1);
 							label.setText("" + distA);
 							label_1.setText("" + distB);
@@ -512,25 +561,25 @@ public class gui1 {
 							label_4.setText("" + distE);
 							
 						}
+						//catch wrong file formatting errors
 						catch (NumberFormatException e1) {
 							JOptionPane.showMessageDialog(frmGradebook, "Imported text document (" + selectedFile.getPath() + ") not formatted correctly.", "Error", JOptionPane.WARNING_MESSAGE);
 						}
-						
+						//catch other exceptions? couldn't even tell you
 						catch (Exception eee) {
 							eee.printStackTrace();
 						}
 					}
+					//else incorrect file type -> prompt user to retry?
 					else {
 						JOptionPane.showMessageDialog(frmGradebook, "Incorrect file type.", "Error", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				
-			}
-				
+			}		
 		});
 		
-		
-		//save grades button
+		//save grades to file action
 		btnSaveGradesTo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -622,7 +671,7 @@ public class gui1 {
 			}
 		});
 		
-		//change minimum grade button
+		//grade distribution action
 		btnChange_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -674,7 +723,7 @@ public class gui1 {
 				
 		});
 		
-		//set minimum and maximum scores button
+		//set minimum and maximum action
 		btnSetMinmax.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -733,8 +782,7 @@ public class gui1 {
 				
 		});
 		
-		
-		//print report button 
+		//print report action
 		btnPrintReport_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -775,15 +823,13 @@ public class gui1 {
 							ex.printStackTrace();
 						}
 					}
-					//changing to 'error' 
 					else JOptionPane.showMessageDialog(frmGradebook, "No grades have been imported.", "Error", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
 		
+		//close JFrame and exit program
 		frmGradebook.setBounds(100, 100, 784, 464);
-		frmGradebook.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frmGradebook.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
-
 }
