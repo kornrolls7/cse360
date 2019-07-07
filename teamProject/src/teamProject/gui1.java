@@ -374,7 +374,7 @@ package teamProject;
 			frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
 			
 			//initialize 'set minimum and maximum' button
-			JButton btnSetMinmax = new JButton("SET MIN/MAX");
+			JButton btnSetMinmax = new JButton("Set Min/Max Grade");
 			btnSetMinmax.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 			GridBagConstraints gbc_btnSetMinmax = new GridBagConstraints();
 			gbc_btnSetMinmax.insets = new Insets(0, 0, 5, 5);
@@ -400,7 +400,8 @@ package teamProject;
 			//upload grades action listener
 		    btnUploadGrades.addActionListener(new ActionListener(){  
 		        public void actionPerformed(ActionEvent e){  
-		        	
+		        	//initialize local variables
+		        	double newGrade = 0;
 		        	//initialize file chooser
 		        	JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 					int returnValue = jfc.showOpenDialog(null);
@@ -414,7 +415,13 @@ package teamProject;
 
 						        while(scan.hasNextDouble())
 						        {
-						            grades.add(scan.nextDouble()); //add each grade to the ArrayList grades
+						        	newGrade = scan.nextDouble();
+						        	if(newGrade > maxGrade || newGrade < minGrade) { //grade is out of range
+						        		JOptionPane.showMessageDialog(frmGradebook, "Imported text document " + selectedFile.getPath() + " contains grade(s) which are\nout of range. Those grades have not been added. Use 'Set Min/Max Grade' button to change grade range.");
+						        	}
+						        	else {
+						        		grades.add(newGrade); //add each grade to the ArrayList grades
+						        	}
 						        }
 						        
 						        gradesString = gradesToString(grades); //set grades string
