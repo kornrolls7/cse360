@@ -374,13 +374,7 @@ package teamProject;
 			frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
 			
 			//initialize 'set minimum and maximum' button
-			JButton btnSetMinmax = new JButton("Set Min/Max Grade");
-			btnSetMinmax.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-			GridBagConstraints gbc_btnSetMinmax = new GridBagConstraints();
-			gbc_btnSetMinmax.insets = new Insets(0, 0, 5, 5);
-			gbc_btnSetMinmax.gridx = 5;
-			gbc_btnSetMinmax.gridy = 14;
-			frmGradebook.getContentPane().add(btnSetMinmax, gbc_btnSetMinmax);
+			btnSetMinMax();
 
 			//initialize 'update grades' button
 			btnUpdateGrades();
@@ -516,7 +510,39 @@ package teamProject;
 						e.printStackTrace();
 					}
 				}
-
+				
+			private void btnSetMinMax() {
+				//initialize btnSetMinMax
+				JButton btnSetMinMax = new JButton("Set Min/Max Grade");
+				btnSetMinMax.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+				GridBagConstraints gbc_btnSetMinmax = new GridBagConstraints();
+				gbc_btnSetMinmax.insets = new Insets(0, 0, 5, 5);
+				gbc_btnSetMinmax.gridx = 5;
+				gbc_btnSetMinmax.gridy = 14;
+				frmGradebook.getContentPane().add(btnSetMinMax, gbc_btnSetMinmax);
+				
+				//btnSetMinMax action listener
+				btnSetMinMax.addActionListener(new ActionListener(){  
+					
+			        public void actionPerformed(ActionEvent e){  
+			        	try {
+							int newMin = Integer.parseInt(JOptionPane.showInputDialog("Enter minimum score:"));
+							int newMax = Integer.parseInt(JOptionPane.showInputDialog("Enter maximum score:"));
+							if (newMin < newMax && newMin >= 0) {
+								minGrade = newMin;
+								maxGrade = newMax;
+							}
+							else {
+								JOptionPane.showMessageDialog(frmGradebook, "Minimum grade must be positive and Maximum grade must be larger than Minimum grade.", "Error", JOptionPane.WARNING_MESSAGE);
+							}
+							
+						} catch (Exception exx) {
+							exx.printStackTrace();
+						}
+					}//action performed
+			    });//add upload grades action listener			
+			}//betSetMinMax() method
+			
 		private void initializePanes() {
 			textPaneT.setBackground(new Color(30, 144, 255));
 			textPane.setBackground(new Color(30, 144, 255));
