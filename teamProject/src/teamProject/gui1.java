@@ -22,7 +22,7 @@ package teamProject;
 		//initialize global variables
 		List<Double> grades = new ArrayList<>(); 
 		String gradesString = "";
-		
+		double high, low, average, median;
 		
 		//initialize global text editor window
 		JEditorPane editorPaneT = new JEditorPane();
@@ -505,7 +505,7 @@ package teamProject;
 					}
 				}
 
-		public void initializePanes() {
+		private void initializePanes() {
 			//initialize 'letter grades' display text window
 			JTextPane textPane = new JTextPane(); 
 			JScrollPane textPaneT = new JScrollPane(textPane);
@@ -530,14 +530,35 @@ package teamProject;
 		}
 		
 		private void analyzeGrades() {
-			//calculate and display high result
-			lblHighResult.setText("99.9"); //PLACEHOLDER
-			//calculate and display low result
-			lblLowResult.setText("99.9");
-			//calculate and display average result
-			lblAverageResult.setText("99.9"); //PLACEHOLDER
-			//calculate and display median result
+			//calculate sum of grades
+			double sum = 0;
+				for (int index = 0; index < grades.size(); index++) {
+					sum += grades.get(index);
+				}
 			
+			DecimalFormat decimal = new DecimalFormat("#.##");
+			
+			//create new list and sort in increasing order
+			List<Double> sortedGrades = grades;
+			Collections.sort(sortedGrades);
+			
+			//calculate and display high result
+			high = sortedGrades.get(sortedGrades.size() - 1);
+			lblHighResult.setText(decimal.format(high)); 
+			//calculate and display low result
+			low = sortedGrades.get(0);
+			lblLowResult.setText(decimal.format(low)); 
+			//calculate and display average result
+			average = sum / grades.size();
+			lblAverageResult.setText(decimal.format(average));
+			//calculate and display median result
+			if(sortedGrades.size() % 2 == 0) { //even number of grades
+				median = (double)(sortedGrades.get(((grades.size()/2) - 1)) + sortedGrades.get((grades.size() / 2))) / 2.0;
+			}
+			else {
+				median = (double)sortedGrades.get((grades.size() / 2));
+			}
+			lblMedianResult.setText(decimal.format(median)); 
 		}
 }//gui class 	
 	
