@@ -562,9 +562,10 @@ package teamProject;
 								minB = newB;
 								minC = newC;
 								minD = newD;
+								analyzeGrades();
 							}
 							else {
-								JOptionPane.showMessageDialog(frmGradebook, "Grade ranges must follow the following format: A > B > C > D > E. Please try again", "Error", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(frmGradebook, "Grade ranges must follow the following format: A > B > C > D > E. Please try again.", "Error", JOptionPane.WARNING_MESSAGE);
 							}
 						} catch(Exception ee) {
 							ee.printStackTrace();
