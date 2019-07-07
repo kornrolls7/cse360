@@ -354,16 +354,8 @@ package teamProject;
 			
 			//upload grades button
 			btnUploadGrades();
-			
 			//change grade range button
-			JButton btnChange_1 = new JButton("CHANGE GRADE RANGE");
-			btnChange_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-			GridBagConstraints gbc_btnChange_1 = new GridBagConstraints();
-			gbc_btnChange_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_btnChange_1.insets = new Insets(0, 0, 5, 5);
-			gbc_btnChange_1.gridx = 4;
-			gbc_btnChange_1.gridy = 7;
-			frmGradebook.getContentPane().add(btnChange_1, gbc_btnChange_1);
+			btnChangeGradeRange();
 			
 			//initialize print report button
 			JButton btnPrintReport_1 = new JButton("PRINT REPORT");
@@ -375,11 +367,12 @@ package teamProject;
 			
 			//initialize 'set minimum and maximum' button
 			btnSetMinMax();
-
 			//initialize 'update grades' button
 			btnUpdateGrades();
 		
 		}//initialize buttons method
+
+			
 
 			private void btnUploadGrades() {
 			//upload grades button 
@@ -542,6 +535,43 @@ package teamProject;
 					}//action performed
 			    });//add upload grades action listener			
 			}//betSetMinMax() method
+		
+			private void btnChangeGradeRange() {
+				//initialize change grade range button
+				JButton btnChangeGrade = new JButton("Change Letter Grade Ranges");
+				btnChangeGrade.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+				GridBagConstraints gbc_btnChange_1 = new GridBagConstraints();
+				gbc_btnChange_1.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnChange_1.insets = new Insets(0, 0, 5, 5);
+				gbc_btnChange_1.gridx = 4;
+				gbc_btnChange_1.gridy = 7;
+				frmGradebook.getContentPane().add(btnChangeGrade, gbc_btnChange_1);
+				
+				//btnChangeGradeRange action listener
+				btnChangeGrade.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						double newA, newB, newC, newD;
+						try {
+							newA = Double.parseDouble(JOptionPane.showInputDialog("Enter minimum grade for A:"));
+							newB = Double.parseDouble(JOptionPane.showInputDialog("Enter minimum grade for B:"));
+							newC = Double.parseDouble(JOptionPane.showInputDialog("Enter minimum grade for C:"));
+							newD = Double.parseDouble(JOptionPane.showInputDialog("Enter minimum grade for D:"));
+							
+							if(newA > newB && newB > newC && newC > newD) {
+								minA = newA;
+								minB = newB;
+								minC = newC;
+								minD = newD;
+							}
+							else {
+								JOptionPane.showMessageDialog(frmGradebook, "Grade ranges must follow the following format: A > B > C > D > E. Please try again", "Error", JOptionPane.WARNING_MESSAGE);
+							}
+						} catch(Exception ee) {
+							ee.printStackTrace();
+						}
+					}
+					});
+			}//btnChangeGradeRange() method
 			
 		private void initializePanes() {
 			textPaneT.setBackground(new Color(30, 144, 255));
