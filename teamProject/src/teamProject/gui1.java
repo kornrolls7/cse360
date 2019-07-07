@@ -22,18 +22,28 @@ package teamProject;
 		//initialize global variables
 		List<Double> grades = new ArrayList<>(); 
 		String gradesString = "";
-		double high, low, average, median;
+		int minGrade = 0, maxGrade = 100;
+		double high = 0, low = 0, average = 0, median = 0;
+		double minA = 90, minB = 80, minC = 70, minD = 60;
 		
 		//initialize global text editor window
 		JEditorPane editorPaneT = new JEditorPane();
 		JScrollPane editorPane = new JScrollPane(editorPaneT);
+		
+		//initialize 'letter grades' display text window
+		JTextPane textPane = new JTextPane(); 
+		JScrollPane textPaneT = new JScrollPane(textPane);
 		
 		//initialize global labels
 		JLabel lblHighResult = new JLabel("0");
 		JLabel lblLowResult = new JLabel("0");
 		JLabel lblAverageResult = new JLabel("0");
 		JLabel lblMedianResult = new JLabel("0");
-		
+		JLabel lblAResult = new JLabel("0");
+		JLabel lblBResult = new JLabel("0");
+		JLabel lblCResult = new JLabel("0");
+		JLabel lblDResult = new JLabel("0");
+		JLabel lblEResult = new JLabel("0");
 		//initialize private variables
 		private JFrame frmGradebook; //initialize grading application 
 		private String filePath = null; 
@@ -179,7 +189,7 @@ package teamProject;
 				gbc_lblGrades.gridy = 1;
 				frmGradebook.getContentPane().add(lblGrades, gbc_lblGrades);
 			
-			//initialize grade distribution label
+			//grade distribution label
 				JLabel lblDistribution = new JLabel("DISTRIBUTION");
 				lblDistribution.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblDistribution = new GridBagConstraints();
@@ -188,7 +198,7 @@ package teamProject;
 				gbc_lblDistribution.gridy = 7;
 				frmGradebook.getContentPane().add(lblDistribution, gbc_lblDistribution);
 				
-			//initialize 'A' grade label
+			//'A' grade label
 				JLabel lblA = new JLabel("A");
 				lblA.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblA = new GridBagConstraints();
@@ -197,16 +207,15 @@ package teamProject;
 				gbc_lblA.gridy = 8;
 				frmGradebook.getContentPane().add(lblA, gbc_lblA);
 	
-			//initialize 'number of A's' result display label to 0
-				JLabel label = new JLabel("0");
-				label.setForeground(Color.WHITE);
+			//'number of A's' result display label
+				lblAResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_lblTest = new GridBagConstraints();
 				gbc_lblTest.insets = new Insets(0, 0, 5, 5);
 				gbc_lblTest.gridx = 2;
 				gbc_lblTest.gridy = 8;
-				frmGradebook.getContentPane().add(label, gbc_lblTest);
-	
-			//initialize 'B' grade label
+				frmGradebook.getContentPane().add(lblAResult, gbc_lblTest);
+				
+			//'B' grade label
 				JLabel lblB = new JLabel("B");
 				lblB.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblB = new GridBagConstraints();
@@ -215,16 +224,15 @@ package teamProject;
 				gbc_lblB.gridy = 9;
 				frmGradebook.getContentPane().add(lblB, gbc_lblB);
 	
-			//initialize 'number of B's' result display label to 0
-				JLabel label_1 = new JLabel("0");
-				label_1.setForeground(Color.WHITE);
+			//'number of B's' result display label
+				lblBResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_lblTest_1 = new GridBagConstraints();
 				gbc_lblTest_1.insets = new Insets(0, 0, 5, 5);
 				gbc_lblTest_1.gridx = 2;
 				gbc_lblTest_1.gridy = 9;
-				frmGradebook.getContentPane().add(label_1, gbc_lblTest_1);
+				frmGradebook.getContentPane().add(lblBResult, gbc_lblTest_1);
 	
-			//initialize 'C' grade label
+			//'C' grade label
 				JLabel lblC = new JLabel("C");
 				lblC.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblC = new GridBagConstraints();
@@ -233,14 +241,13 @@ package teamProject;
 				gbc_lblC.gridy = 10;
 				frmGradebook.getContentPane().add(lblC, gbc_lblC);
 	
-			//initialize 'number of C's' result display label to 0
-				JLabel label_2 = new JLabel("0");
-				label_2.setForeground(Color.WHITE);
+			//'number of C's' result display label 
+				lblCResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_label = new GridBagConstraints();
 				gbc_label.insets = new Insets(0, 0, 5, 5);
 				gbc_label.gridx = 2;
 				gbc_label.gridy = 10;
-				frmGradebook.getContentPane().add(label_2, gbc_label);
+				frmGradebook.getContentPane().add(lblCResult, gbc_label);
 	
 			//initialize 'D' grade label
 				JLabel lblD = new JLabel("D");
@@ -251,14 +258,13 @@ package teamProject;
 				gbc_lblD.gridy = 11;
 				frmGradebook.getContentPane().add(lblD, gbc_lblD);
 	
-			//initialize 'number of D's' result display label to 0
-				JLabel label_3 = new JLabel("0");
-				label_3.setForeground(Color.WHITE);
+			//'number of D's' result display label
+				lblDResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_label_1 = new GridBagConstraints();
 				gbc_label_1.insets = new Insets(0, 0, 5, 5);
 				gbc_label_1.gridx = 2;
 				gbc_label_1.gridy = 11;
-				frmGradebook.getContentPane().add(label_3, gbc_label_1);
+				frmGradebook.getContentPane().add(lblDResult, gbc_label_1);
 	
 			//initialize 'E' grade label
 				JLabel lblE = new JLabel("E");
@@ -270,13 +276,12 @@ package teamProject;
 				frmGradebook.getContentPane().add(lblE, gbc_lblE);
 
 			//initialize 'number of E's' result display label
-				JLabel label_4 = new JLabel("0");
-				label_4.setForeground(Color.WHITE);
+				lblEResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_label_2 = new GridBagConstraints();
 				gbc_label_2.insets = new Insets(0, 0, 5, 5);
 				gbc_label_2.gridx = 2;
 				gbc_label_2.gridy = 12;
-				frmGradebook.getContentPane().add(label_4, gbc_label_2);
+				frmGradebook.getContentPane().add(lblEResult, gbc_label_2);
 	
 			//initialize 'percentile' label
 				JLabel lblPercentile = new JLabel("PERCENTILE");
@@ -506,9 +511,6 @@ package teamProject;
 				}
 
 		private void initializePanes() {
-			//initialize 'letter grades' display text window
-			JTextPane textPane = new JTextPane(); 
-			JScrollPane textPaneT = new JScrollPane(textPane);
 			textPaneT.setBackground(new Color(30, 144, 255));
 			textPane.setBackground(new Color(30, 144, 255));
 			GridBagConstraints gbc_textPaneT = new GridBagConstraints();
@@ -530,6 +532,9 @@ package teamProject;
 		}
 		
 		private void analyzeGrades() {
+			//initialize local variables
+			int numA = 0, numB = 0, numC = 0, numD = 0, numE = 0;
+			String gradesRecieved = "";
 			//calculate sum of grades
 			double sum = 0;
 				for (int index = 0; index < grades.size(); index++) {
@@ -539,7 +544,8 @@ package teamProject;
 			DecimalFormat decimal = new DecimalFormat("#.##");
 			
 			//create new list and sort in increasing order
-			List<Double> sortedGrades = grades;
+			List<Double> sortedGrades = new ArrayList<>();
+			sortedGrades.addAll(grades);
 			Collections.sort(sortedGrades);
 			
 			//calculate and display high result
@@ -559,6 +565,40 @@ package teamProject;
 				median = (double)sortedGrades.get((grades.size() / 2));
 			}
 			lblMedianResult.setText(decimal.format(median)); 
+			
+			//calculate grade distributions
+			for (int index = 0; index < grades.size(); index++) {
+				double currentGrade = grades.get(index); 
+				if (currentGrade >= minA - .5) {
+					gradesRecieved += "A\n";
+					numA++;
+				}
+				else if (currentGrade >= minB - .5) {
+					gradesRecieved += "B\n";
+					numB++;
+				}
+				else if (currentGrade >= minC - .5) {
+					gradesRecieved += "C\n";
+					numC++;
+				}
+				else if (currentGrade >= minD - .5) {
+					gradesRecieved += "D\n";
+					numD++;
+				}
+				else {
+					gradesRecieved += "E\n";
+					numE++;
+				}
+			}
+			//display grades recieved
+			textPane.setText(gradesRecieved);
+			//display number of each grade
+			lblAResult.setText(Integer.toString(numA));
+			lblBResult.setText(Integer.toString(numB));
+			lblCResult.setText(Integer.toString(numC));
+			lblDResult.setText(Integer.toString(numD));
+			lblEResult.setText(Integer.toString(numE));
+			
 		}
 }//gui class 	
 	
