@@ -44,6 +44,9 @@ package teamProject;
 		JLabel lblCResult = new JLabel("0");
 		JLabel lblDResult = new JLabel("0");
 		JLabel lblEResult = new JLabel("0");
+		JLabel lbl20thResult = new JLabel(" ");
+		JLabel lbl70thResult = new JLabel(" ");
+		JLabel lbl90thResult = new JLabel(" ");
 		//initialize private variables
 		private JFrame frmGradebook; //initialize grading application 
 		private String filePath = null; 
@@ -161,7 +164,7 @@ package teamProject;
 				gbc_lblMedian.gridy = 5;
 				frmGradebook.getContentPane().add(lblMedian, gbc_lblMedian);
 	
-			//'median' result to 0
+			//'median' result label
 				lblMedianResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_lblMedianDynamic_1 = new GridBagConstraints();
 				gbc_lblMedianDynamic_1.insets = new Insets(0, 0, 5, 5);
@@ -249,7 +252,7 @@ package teamProject;
 				gbc_label.gridy = 10;
 				frmGradebook.getContentPane().add(lblCResult, gbc_label);
 	
-			//initialize 'D' grade label
+			// 'D' grade label
 				JLabel lblD = new JLabel("D");
 				lblD.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblD = new GridBagConstraints();
@@ -266,7 +269,7 @@ package teamProject;
 				gbc_label_1.gridy = 11;
 				frmGradebook.getContentPane().add(lblDResult, gbc_label_1);
 	
-			//initialize 'E' grade label
+			//'E' grade label
 				JLabel lblE = new JLabel("E");
 				lblE.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblE = new GridBagConstraints();
@@ -275,7 +278,7 @@ package teamProject;
 				gbc_lblE.gridy = 12;
 				frmGradebook.getContentPane().add(lblE, gbc_lblE);
 
-			//initialize 'number of E's' result display label
+			//'number of E's' result display label
 				lblEResult.setForeground(Color.WHITE);
 				GridBagConstraints gbc_label_2 = new GridBagConstraints();
 				gbc_label_2.insets = new Insets(0, 0, 5, 5);
@@ -283,7 +286,7 @@ package teamProject;
 				gbc_label_2.gridy = 12;
 				frmGradebook.getContentPane().add(lblEResult, gbc_label_2);
 	
-			//initialize 'percentile' label
+			//'percentile' label
 				JLabel lblPercentile = new JLabel("PERCENTILE");
 				lblPercentile.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblPercentile = new GridBagConstraints();
@@ -292,62 +295,59 @@ package teamProject;
 				gbc_lblPercentile.gridy = 14;
 				frmGradebook.getContentPane().add(lblPercentile, gbc_lblPercentile);
 	
-			//initialize '20th percentile' label
-				JLabel lblBottom = new JLabel("20th Percentile");
-				lblBottom.setForeground(new Color(255, 255, 255));
+			//'20th percentile' label
+				JLabel lbl20th = new JLabel("20th Percentile");
+				lbl20th.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblBottom = new GridBagConstraints();
 				gbc_lblBottom.insets = new Insets(0, 0, 5, 5);
 				gbc_lblBottom.gridx = 1;
 				gbc_lblBottom.gridy = 15;
-				frmGradebook.getContentPane().add(lblBottom, gbc_lblBottom);
+				frmGradebook.getContentPane().add(lbl20th, gbc_lblBottom);
 	
-			//initialize '70th percentile' label
-				JLabel lblMiddle = new JLabel("70th Percentile");
-				lblMiddle.setForeground(new Color(255, 255, 255));
+			//'70th percentile' label
+				JLabel lbl70th = new JLabel("70th Percentile");
+				lbl70th.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblMiddle = new GridBagConstraints();
 				gbc_lblMiddle.insets = new Insets(0, 0, 5, 5);
 				gbc_lblMiddle.gridx = 4;
 				gbc_lblMiddle.gridy = 15;
-				frmGradebook.getContentPane().add(lblMiddle, gbc_lblMiddle);
+				frmGradebook.getContentPane().add(lbl70th, gbc_lblMiddle);
 
-			//initialize '90th percentile' label
-				JLabel lblTop = new JLabel("90th Percentile");
-				lblTop.setForeground(new Color(255, 255, 255));
+			//'90th percentile' label
+				JLabel lbl90th = new JLabel("90th Percentile");
+				lbl90th.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblTop = new GridBagConstraints();
 				gbc_lblTop.insets = new Insets(0, 0, 5, 5);
 				gbc_lblTop.gridx = 5;
 				gbc_lblTop.gridy = 15;
-				frmGradebook.getContentPane().add(lblTop, gbc_lblTop);
+				frmGradebook.getContentPane().add(lbl90th, gbc_lblTop);
 
-			//initialize 20th percentile result display label
-				JLabel lblBottom20Dynamic = new JLabel(" ");
-				lblBottom20Dynamic.setBackground(Color.WHITE);
-				lblBottom20Dynamic.setForeground(new Color(255, 255, 255));
+			//20th percentile result display label
+				lbl20thResult.setBackground(Color.WHITE);
+				lbl20thResult.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblBottom20Dynamic = new GridBagConstraints();
 				gbc_lblBottom20Dynamic.insets = new Insets(0, 0, 0, 5);
 				gbc_lblBottom20Dynamic.gridx = 1;
 				gbc_lblBottom20Dynamic.gridy = 16;
-				frmGradebook.getContentPane().add(lblBottom20Dynamic, gbc_lblBottom20Dynamic);
+				frmGradebook.getContentPane().add(lbl20thResult, gbc_lblBottom20Dynamic);
 
-			//initialize 70th percentile result display label
-				JLabel lblMiddle70Dynamic = new JLabel(" ");
-				lblMiddle70Dynamic.setBackground(Color.WHITE);
-				lblMiddle70Dynamic.setForeground(new Color(255, 255, 255));
+			//70th percentile result display label
+				lbl70thResult.setBackground(Color.WHITE);
+				lbl70thResult.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblMiddle70Dynamic = new GridBagConstraints();
 				gbc_lblMiddle70Dynamic.insets = new Insets(0, 0, 0, 5);
 				gbc_lblMiddle70Dynamic.gridx = 4;
 				gbc_lblMiddle70Dynamic.gridy = 16;
-				frmGradebook.getContentPane().add(lblMiddle70Dynamic, gbc_lblMiddle70Dynamic);
+				frmGradebook.getContentPane().add(lbl70thResult, gbc_lblMiddle70Dynamic);
 	
-			//initialize 90th percentile result display label
-				JLabel lblTop10Dynamic = new JLabel(" ");
-				lblTop10Dynamic.setBackground(Color.WHITE);
-				lblTop10Dynamic.setForeground(new Color(255, 255, 255));
+			//90th percentile result display label
+				lbl90thResult.setBackground(Color.WHITE);
+				lbl90thResult.setForeground(new Color(255, 255, 255));
 				GridBagConstraints gbc_lblTop10Dynamic = new GridBagConstraints();
 				gbc_lblTop10Dynamic.insets = new Insets(0, 0, 0, 5);
 				gbc_lblTop10Dynamic.gridx = 5;
 				gbc_lblTop10Dynamic.gridy = 16;
-				frmGradebook.getContentPane().add(lblTop10Dynamic, gbc_lblTop10Dynamic);
+				frmGradebook.getContentPane().add(lbl90thResult, gbc_lblTop10Dynamic);
 		}//initialize labels method
 
 		private void initializeButtons() {
@@ -599,6 +599,10 @@ package teamProject;
 			lblDResult.setText(Integer.toString(numD));
 			lblEResult.setText(Integer.toString(numE));
 			
+			//calculate and display percentiles
+			lbl20thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.2 * sortedGrades.size())-1))); //20th percentile
+			lbl70thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.7 * sortedGrades.size())-1))); //70th percentile
+			lbl90thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.9 * sortedGrades.size())-1))); //90th percentile
 		}
 }//gui class 	
 	
