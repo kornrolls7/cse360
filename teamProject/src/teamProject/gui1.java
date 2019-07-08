@@ -25,7 +25,8 @@ package teamProject;
 		int minGrade = 0, maxGrade = 100;
 		double high = 0, low = 0, average = 0, median = 0;
 		double minA = 90, minB = 80, minC = 70, minD = 60;
-		
+		int numA = 0, numB = 0, numC = 0, numD = 0, numE = 0;
+		double percentile20th = 0, percentile70th = 0, percentile90th = 0;
 		//initialize global text editor window
 		JEditorPane editorPaneT = new JEditorPane();
 		JScrollPane editorPane = new JScrollPane(editorPaneT);
@@ -351,28 +352,12 @@ package teamProject;
 		}//initialize labels method
 
 		private void initializeButtons() {
-			
-			//upload grades button
 			btnUploadGrades();
-			//change grade range button
 			btnChangeGradeRange();
-			
-			//initialize print report button
-			JButton btnPrintReport_1 = new JButton("PRINT REPORT");
-			GridBagConstraints gbc_btnPrintReport_1 = new GridBagConstraints();
-			gbc_btnPrintReport_1.insets = new Insets(0, 0, 5, 5);
-			gbc_btnPrintReport_1.gridx = 4;
-			gbc_btnPrintReport_1.gridy = 1;
-			frmGradebook.getContentPane().add(btnPrintReport_1, gbc_btnPrintReport_1);
-			
-			//initialize 'set minimum and maximum' button
+			btnPrintReport();
 			btnSetMinMax();
-			//initialize 'update grades' button
 			btnUpdateGrades();
-		
 		}//initialize buttons method
-
-			
 
 			private void btnUploadGrades() {
 			//upload grades button 
@@ -574,6 +559,63 @@ package teamProject;
 					});
 			}//btnChangeGradeRange() method
 			
+			private void btnPrintReport() {
+				//initialize print report button
+				JButton btnPrintReport = new JButton("Print Report");
+				GridBagConstraints gbc_btnPrintReport_1 = new GridBagConstraints();
+				gbc_btnPrintReport_1.insets = new Insets(0, 0, 5, 5);
+				gbc_btnPrintReport_1.gridx = 4;
+				gbc_btnPrintReport_1.gridy = 1;
+				frmGradebook.getContentPane().add(btnPrintReport, gbc_btnPrintReport_1);
+				
+				//btnPrintReport action listener
+				btnPrintReport.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+						int retrieval = jfc.showSaveDialog(null);
+						if (retrieval == JFileChooser.APPROVE_OPTION) {
+							if (grades.size() != 0) {
+								try {
+									BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(jfc.getSelectedFile() + ".txt"));
+									
+									String out = "";
+									out = 
+										"GRADES\n" +
+										"----------------------\n";
+								
+											//add grades to file
+									out += 
+										"\nSTATISTICS\n" + 
+										"----------------------\n" + 
+										"HIGH = " + high +
+										"\nLOW = " + low +
+										"\nAVERAGE = " + average +
+										"\nMEDIAN = " + median + 
+										"\n\nDISTRIBUTION\n" + 
+										"----------------------\n" +
+										"A\t|\t" + numA + 
+										"\nB\t|\t" + numB + 
+										"\nC\t|\t" + numC + 
+										"\nD\t|\t" + numD +
+										"\nE\t|\t" + numE + 
+										"\n\n20th Percentile: " + percentile20th +
+										"\n70th Percentile: " + percentile70th + 
+										"\n90th Percentile: " + percentile90th;
+									bufferedWriter.write(out);
+									bufferedWriter.close();	
+							} 
+							catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(frmGradebook, "No grades have been imported.");
+						}
+					}
+				}//action
+			});//add action listener
+		}//btnPrintReport() method
+			
 		private void initializePanes() {
 			textPaneT.setBackground(new Color(30, 144, 255));
 			textPane.setBackground(new Color(30, 144, 255));
@@ -596,8 +638,6 @@ package teamProject;
 		}
 		
 		private void analyzeGrades() {
-			//initialize local variables
-			int numA = 0, numB = 0, numC = 0, numD = 0, numE = 0;
 			String gradesRecieved = "";
 			//calculate sum of grades
 			double sum = 0;
@@ -664,9 +704,12 @@ package teamProject;
 			lblEResult.setText(Integer.toString(numE));
 			
 			//calculate and display percentiles
-			lbl20thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.2 * sortedGrades.size())-1))); //20th percentile
-			lbl70thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.7 * sortedGrades.size())-1))); //70th percentile
-			lbl90thResult.setText(decimal.format(sortedGrades.get((int)Math.ceil(0.9 * sortedGrades.size())-1))); //90th percentile
+			percentile20th = sortedGrades.get((int)Math.ceil(0.2 * sortedGrades.size())-1);
+			percentile70th = sortedGrades.get((int)Math.ceil(0.7 * sortedGrades.size())-1);
+			percentile90th = sortedGrades.get((int)Math.ceil(0.9 * sortedGrades.size())-1);
+			lbl20thResult.setText(decimal.format(percentile20th)); //20th percentile
+			lbl70thResult.setText(decimal.format(percentile70th)); //70th percentile
+			lbl90thResult.setText(decimal.format(percentile90th)); //90th percentile
 		}
 }//gui class 	
 	
