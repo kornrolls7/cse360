@@ -711,7 +711,7 @@ package teamProject;
 			lbl70thResult.setText(decimal.format(percentile70th)); //70th percentile
 			lbl90thResult.setText(decimal.format(percentile90th)); //90th percentile
 		}
-}//gui class 	
+}//GradingApplication class	
 	
 	
 
